@@ -1,0 +1,142 @@
+/* TOGGLE */
+.uncq-toggle {
+	float: left;
+	line-height: 80px;
+	margin-left: 15px;
+	font-size: 1.2em !important;
+	color: #fff;
+}
+
+/* MENU */
+.uncq-menu {
+	font-size: 1.1em;
+}
+
+.uncq-menu>ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.uncq-menu>ul a {
+	display: block;
+	padding: 10px 15px;
+	text-decoration: none;
+	font-weight: 500;
+	color: #373737;
+	font-weight: bold;
+}
+
+.uncq-menu>ul i {
+	margin-right: 6px;
+}
+
+.uncq-menu>ul a:hover, .uncq-menu>ul a:focus {
+	background-color: #dfdfdf;
+	border-left: 3px solid #373737;
+	color: #373737 !important;
+}
+
+.uncq-menu>ul .is-selected {
+	border-left: 3px solid #fc5e00;
+	background-color: #f3f3f3;
+}
+
+.uncq-menu>ul .is-selected a {
+	margin-left: -3px;
+	color: #fc5e00;
+}
+
+/* TITLE-PANEL */
+.uncq-title-panel {
+	margin-top: 20px;
+	padding: 20px 0;
+}
+
+/* BOTÕES E LINKS */
+.botao-laranja {
+	background: rgba(249, 127, 52, 1) !important;
+	color: #fff !important;
+}
+
+.botao-laranja:hover {
+	background: rgba(252, 94, 0, 1) !important;
+	transition: none !important;
+}
+
+.botao-confirmacao {
+	background: #fff !important;
+	color: #008000 !important;
+}
+
+.botao-confirmacao:hover {
+	color: #3f5a44 !important;
+	transition: none !important;
+}
+
+.botao-cancelar {
+	background: #fff !important;
+	color: #ef2929 !important;
+}
+
+.botao-cancelar:hover {
+	color: #a40000 !important;
+	transition: none !important;
+}
+
+.botao-link-cancelar {
+	background: transparent !important;
+	color: #333 !important;
+	border: none;
+}
+
+.botao-link-cancelar:hover {
+	color: #fb5e00 !important;
+	transition: none !important;
+}
+
+.botao-voltar {
+	background: #fff !important;
+	color: #333 !important;
+}
+
+.botao-voltar:hover {
+	color: #000 !important;
+	transition: none !important;
+}
+
+.botao-continuar {
+	background: #fff !important;
+	color: #3f5a44 !important;
+	font-weight: bold;
+	border: none !important;
+	border-radius: none !important;
+}
+
+.botao-continuar:hover {
+	background: #d3d7cf !important;
+	transition: none !important;
+}
+
+.botao-fechar {
+	background: #fff !important;
+	color: #FB5E00 !important;
+	font-weight: bold;
+	border: none !important;
+	border-radius: none !important;
+}
+
+.botao-fechar:hover {
+	background: #d3d7cf !important;
+	transition: none !important;
+}
+
+.link-navegacao {
+	float: right;
+	font-weight: normal;
+	color: #427fed !important;
+}
+
+.link-navegacao:hover {
+	text-decoration: underline;
+}
