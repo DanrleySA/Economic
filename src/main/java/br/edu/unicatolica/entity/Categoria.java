@@ -1,5 +1,6 @@
 package br.edu.unicatolica.entity;
 
+import br.edu.unicatolica.dao.EntidadeBase;
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -12,7 +13,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "categoria")
-public class Categoria implements Serializable {
+public class Categoria implements Serializable, EntidadeBase {
 
 	private static final long serialVersionUID = 1L;
 
@@ -21,6 +22,7 @@ public class Categoria implements Serializable {
 
 	@Id
 	@GeneratedValue
+        @Override
 	public Long getId() {
 		return id;
 	}
