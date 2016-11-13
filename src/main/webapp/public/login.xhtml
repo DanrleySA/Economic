@@ -2,29 +2,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <title>Login</title>
     </h:head>
 
     <h:body>
-        <p:dialog header="Login" visible="true" closable="false" draggable="false" resizable="false" width="420">
-            <p:messages autoUpdate="true" closable="true"/>
+        <div style="float: left;
+             border-width: 1px;
+             margin-top: 250px; 
+             margin-left: 100px">
 
-            <form action="/economic/j_spring_security_check" method="POST">       
+            <h:graphicImage library="images" name="brand-unicatolica.png"
+                            styleClass="logo" />
+            <br/><br/>
+            <label class="nome-sistema" 
+                   style="display:block; 
+                   width:500; height:300; 
+                   text-align:right;">
+                <strong>Sistema de Controle Financeiro Pessoal</strong>
+            </label>
+        </div>
+
+        <div class="headerDivider" style=" position:absolute;
+             left:47%;
+             top:10%;
+             bottom:10%;
+             border-left:3px solid black"></div>
+
+             <div style="align-content:center;
+             border-width: 1px;
+             float: right; 
+             margin-top: 250px;
+             margin-right: 100px">
+
+             <form action="/economic/j_spring_security_check" method="POST">       
                 <h:panelGrid columns="2" cellpadding="5"> 
-                    <p:outputLabel for="j_username" value="Email: " />
+                    <p:outputLabel for="j_username" value="Usuario: " />
                     <p:inputText id="j_username" required="true" size="35"/>
                     <p:outputLabel for="j_password" value="Senha: " />
                     <p:password id="j_password" required="true" size="35" />
                 </h:panelGrid>
                 <center>
                     <h:panelGrid columns="1">
-                        <input type="submit" value="Entrar"/>
+                        <input type="submit" value="Acessar"/>
                     </h:panelGrid>
                 </center>    
             </form>
-        </p:dialog>    
+        </div>
+
+
+
+        <p:spacer height="50" width="50"/>
+
+
+
     </h:body>
 </html>
