@@ -1,6 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
 
     <nav class="uncq-menu">
         <ul>
@@ -15,8 +16,9 @@
                 <h:link outcome="/private/categorias/cadastrar-categoria.xhtml">
                     <i class="fa  fa-fw  fa-list-ul"></i>Categorias</h:link>
             </li>
-            <li><h:link>
-                    <i class="fa  fa-fw  fa-sign-out"></i>Sair</h:link></li>
+            <li><p:button href="/j_spring_security_logout" 
+                          icon="fa  fa-fw  fa-sign-out"
+                          value="Sair" /></li>
         </ul>
     </nav>
 

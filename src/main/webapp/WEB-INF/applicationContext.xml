@@ -12,11 +12,13 @@
 
     <b:bean id="appUserDetailsService" class="br.edu.unicatolica.security.AppUserDetailsService"/>
     <http pattern="/javax.faces.resource/**" security="none"/>
+    <http pattern="/public/login.xhtml" security="none"/>
      
-     
-    <http auto-config="true" use-expressions="true">
-        <intercept-url pattern="/private/home.xhtml" access="isAuthenticated()" />
+    <http auto-config="false" use-expressions="true">
+        <intercept-url pattern="/private/**" access="isAuthenticated()" />
         <intercept-url pattern="/**" access="denyAll"/>
+        <form-login login-page="/public/login.xhtml" default-target-url="/" always-use-default-target="true"/>
+        <logout logout-url="/j_spring_security_logout" invalidate-session="true"/>
     </http>
         
     <authentication-manager>
