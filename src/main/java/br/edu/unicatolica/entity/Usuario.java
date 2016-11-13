@@ -8,6 +8,7 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -38,7 +39,7 @@ public class Usuario implements Serializable, EntidadeBase {
         this.id = id;
     }
 
-    @Column(nullable = false, length = 80)
+    @Column(nullable = false, length = 255)
     public String getNome() {
         return nome;
     }
@@ -56,7 +57,7 @@ public class Usuario implements Serializable, EntidadeBase {
         this.email = email;
     }
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 32)
     public String getSenha() {
         return senha;
     }
@@ -65,7 +66,7 @@ public class Usuario implements Serializable, EntidadeBase {
         this.senha = senha;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "grupo_id"))
     public List<Grupo> getGrupos() {
