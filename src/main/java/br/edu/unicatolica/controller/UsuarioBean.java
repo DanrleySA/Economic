@@ -30,10 +30,6 @@ public class UsuarioBean implements Serializable {
             }
         }
     }
-    
-    public String logout(){
-        return "/j_spring_security_logout";
-    }
 
     public Usuario getUsuario() {
         return usuario;

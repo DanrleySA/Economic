@@ -85,7 +85,7 @@ public class Usuario implements Serializable, EntidadeBase {
         this.grupos = grupos;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(orphanRemoval = true)
     @JoinColumn(name = "usuario_id")
     public List<Categoria> getCategorias() {
         return categorias;
@@ -95,7 +95,7 @@ public class Usuario implements Serializable, EntidadeBase {
         this.categorias = categorias;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(orphanRemoval = true)
     @JoinColumn(name = "pessoa_id")
     public List<MovimentacaoFinanceira> getMovimentacoes() {
         return movimentacoes;

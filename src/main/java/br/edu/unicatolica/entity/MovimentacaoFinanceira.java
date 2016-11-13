@@ -17,6 +17,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -51,7 +52,7 @@ public class MovimentacaoFinanceira implements Serializable, EntidadeBase {
     }
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     public Movimentacao getTipo() {
         return tipo;
     }
@@ -61,7 +62,7 @@ public class MovimentacaoFinanceira implements Serializable, EntidadeBase {
     }
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     public Categoria getCategoria() {
         return categoria;
     }
