@@ -27,14 +27,16 @@ public class UsuarioDAO extends GenericoDAO<Usuario> implements Serializable {
         return instance;
     }
 
-    public Usuario getUserPorNome(String nome) {
+    public Usuario getUserPorEmail(String email) {
         EntityManager em = JPAUtil.createEntityManager();
+        Usuario usuario = null;
+
         try {
             Session session = em.unwrap(Session.class);
             Criteria criteria = session.createCriteria(Usuario.class);
 
-            criteria.add(Restrictions.eq("nome", nome));
-            Usuario usuario = (Usuario) criteria.uniqueResult();
+            criteria.add(Restrictions.eq("email", email));
+            usuario = (Usuario) criteria.uniqueResult();
             return usuario;
         } finally {
             em.close();

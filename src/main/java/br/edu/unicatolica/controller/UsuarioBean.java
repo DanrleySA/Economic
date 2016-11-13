@@ -26,7 +26,7 @@ public class UsuarioBean implements Serializable {
         if (context instanceof SecurityContext) {
             Authentication authentication = context.getAuthentication();
             if (authentication instanceof Authentication) {
-                usuario =  UsuarioDAO.getInstance().getUserPorNome(((User) authentication.getPrincipal()).getUsername());
+                usuario = UsuarioDAO.getInstance().getUserPorEmail(((User) authentication.getPrincipal()).getUsername());
             }
         }
     }

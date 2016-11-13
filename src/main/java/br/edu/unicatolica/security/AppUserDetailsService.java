@@ -19,8 +19,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public class AppUserDetailsService implements UserDetailsService {
 
     @Override
-    public UserDetails loadUserByUsername(String nome) throws UsernameNotFoundException {
-        Usuario usuario = UsuarioDAO.getInstance().getUserPorNome(nome);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Usuario usuario = UsuarioDAO.getInstance().getUserPorEmail(email);
         UsuarioSistema user = null;
         if (usuario != null) {
             user = new UsuarioSistema(usuario, getGrupos(usuario));
