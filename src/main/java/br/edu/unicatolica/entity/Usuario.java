@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,7 +27,14 @@ public class Usuario implements Serializable, EntidadeBase {
     private String nome;
     private String email;
     private String senha;
-    private List<Grupo> grupos = new ArrayList<>();
+    private List<Grupo> grupos;
+    private List<Categoria> categorias;
+    private List<MovimentacaoFinanceira> movimentacoes;
+
+    public Usuario() {
+        grupos = new ArrayList<>();
+        categorias = new ArrayList<>();
+    }
 
     @Id
     @GeneratedValue
@@ -75,6 +83,26 @@ public class Usuario implements Serializable, EntidadeBase {
 
     public void setGrupos(List<Grupo> grupos) {
         this.grupos = grupos;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "usuario_id")
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "pessoa_id")
+    public List<MovimentacaoFinanceira> getMovimentacoes() {
+        return movimentacoes;
+    }
+
+    public void setMovimentacoes(List<MovimentacaoFinanceira> movimentacoes) {
+        this.movimentacoes = movimentacoes;
     }
 
     //<editor-fold defaultstate="collapsed" desc="equals and hashCode">
