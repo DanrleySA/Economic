@@ -43,7 +43,7 @@ public class GenericoDAO<T extends EntidadeBase> implements Serializable {
         }
     }
 
-    public T getCategoriaPorId(Class<T> classe, Long id) {
+    public T getEntidadePorId(Class<T> classe, Long id) {
         EntityManager em = JPAUtil.createEntityManager();
         T t = null;
         try {

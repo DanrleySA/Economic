@@ -13,6 +13,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import br.edu.unicatolica.entity.Categoria;
+import br.edu.unicatolica.entity.Usuario;
 import br.edu.unicatolica.filter.CategoriaFilter;
 import br.edu.unicatolica.jpa.util.JPAUtil;
 
@@ -51,6 +52,23 @@ public class CategoriaDAO extends GenericoDAO<Categoria> implements Serializable
 
             if (StringUtils.isNotBlank(categoriaFilter.getDescricao())) {
                 criteria.add(Restrictions.ilike("descricao", categoriaFilter.getDescricao(), MatchMode.ANYWHERE));
+            }
+            return criteria.addOrder(Order.asc("descricao")).list();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Categoria> getCategoriasUsuario(CategoriaFilter categoriaFilter, Usuario usuario) {
+        EntityManager em = JPAUtil.createEntityManager();
+        try {
+            Session session = em.unwrap(Session.class);
+            Criteria criteria = session.createCriteria(Categoria.class);
+            criteria.add(Restrictions.eq("usuario", usuario));
+            
+            if (StringUtils.isNotBlank(categoriaFilter.getDescricao())) {
+                criteria.add(Restrictions.ilike("descricao", categoriaFilter.getDescricao(), MatchMode.ANYWHERE));
+
             }
             return criteria.addOrder(Order.asc("descricao")).list();
         } finally {

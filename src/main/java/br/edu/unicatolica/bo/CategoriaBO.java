@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.edu.unicatolica.dao.CategoriaDAO;
 import br.edu.unicatolica.entity.Categoria;
+import br.edu.unicatolica.entity.Usuario;
 import br.edu.unicatolica.filter.CategoriaFilter;
 
 public class CategoriaBO implements Serializable {
@@ -34,5 +35,8 @@ public class CategoriaBO implements Serializable {
 
     public List<Categoria> getCategorias(CategoriaFilter categoriaFilter) {
         return CategoriaDAO.getInstance().getCategorias(categoriaFilter);
+    }
+    public List<Categoria> getCategoriasUsuario(CategoriaFilter categoriaFilter, Usuario usuario){
+        return CategoriaDAO.getInstance().getCategoriasUsuario(categoriaFilter, usuario);
     }
 }

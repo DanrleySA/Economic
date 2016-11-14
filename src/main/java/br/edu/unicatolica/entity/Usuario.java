@@ -34,6 +34,7 @@ public class Usuario implements Serializable, EntidadeBase {
     public Usuario() {
         grupos = new ArrayList<>();
         categorias = new ArrayList<>();
+        movimentacoes = new ArrayList<>();
     }
 
     @Id
@@ -85,8 +86,7 @@ public class Usuario implements Serializable, EntidadeBase {
         this.grupos = grupos;
     }
 
-    @OneToMany(orphanRemoval = true)
-    @JoinColumn(name = "usuario_id")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Categoria> getCategorias() {
         return categorias;
     }
@@ -95,8 +95,7 @@ public class Usuario implements Serializable, EntidadeBase {
         this.categorias = categorias;
     }
 
-    @OneToMany(orphanRemoval = true)
-    @JoinColumn(name = "pessoa_id")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     public List<MovimentacaoFinanceira> getMovimentacoes() {
         return movimentacoes;
     }

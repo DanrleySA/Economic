@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -35,6 +36,7 @@ public class MovimentacaoFinanceira implements Serializable, EntidadeBase {
     private Date dataVencimento;
     private Status status;
     private BigDecimal valor;
+    private Usuario usuario;
 
     public MovimentacaoFinanceira() {
         setValor(new BigDecimal("0.00"));
@@ -98,6 +100,15 @@ public class MovimentacaoFinanceira implements Serializable, EntidadeBase {
 
     public void setValor(BigDecimal valor) {
         this.valor = valor;
+    }
+
+    @ManyToOne()
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override

@@ -2,11 +2,13 @@ package br.edu.unicatolica.entity;
 
 import br.edu.unicatolica.dao.EntidadeBase;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -19,6 +21,7 @@ public class Categoria implements Serializable, EntidadeBase {
 
     private Long id;
     private String descricao;
+    private Usuario usuario;
 
     @Id
     @GeneratedValue
@@ -39,6 +42,15 @@ public class Categoria implements Serializable, EntidadeBase {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    @ManyToOne()
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override
