@@ -6,9 +6,9 @@ import javax.persistence.Persistence;
 
 public class JPAUtil {
 
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("economicPU");
-	
-	public static EntityManager createEntityManager() {
-		return emf.createEntityManager();
-	}
+    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("economicPU");
+
+    public static EntityManager createEntityManager() {
+        return emf.createEntityManager();
+    }
 }

@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -102,7 +101,7 @@ public class MovimentacaoFinanceira implements Serializable, EntidadeBase {
         this.valor = valor;
     }
 
-    @ManyToOne()
+    @ManyToOne
     public Usuario getUsuario() {
         return usuario;
     }
@@ -111,6 +110,7 @@ public class MovimentacaoFinanceira implements Serializable, EntidadeBase {
         this.usuario = usuario;
     }
 
+//<editor-fold defaultstate="collapsed" desc="equals and hashCode">
     @Override
     public int hashCode() {
         int hash = 3;
@@ -135,5 +135,6 @@ public class MovimentacaoFinanceira implements Serializable, EntidadeBase {
         }
         return true;
     }
+//</editor-fold>
 
 }

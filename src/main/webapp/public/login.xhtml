@@ -32,32 +32,25 @@
              bottom:10%;
              border-left:3px solid black"></div>
 
-             <div style="align-content:center;
+        <div style="align-content:center;
              border-width: 1px;
              float: right; 
              margin-top: 250px;
              margin-right: 100px">
-
-             <form action="/economic/j_spring_security_check" method="POST">       
+            
+            <h:outputText value="Usuário ou senha incorretos!" rendered="#{param.erro}" style="color: darkred"/>
+            <h:form id="login" prependId="false"
+                    onsubmit="action = '#{request.contextPath}/j_spring_security_check';">
                 <h:panelGrid columns="2" cellpadding="5"> 
                     <p:outputLabel for="j_username" value="Usuario: " />
                     <p:inputText id="j_username" required="true" size="35"/>
                     <p:outputLabel for="j_password" value="Senha: " />
                     <p:password id="j_password" required="true" size="35" />
                 </h:panelGrid>
-                <center>
-                    <h:panelGrid columns="1">
-                        <input type="submit" value="Acessar"/>
-                    </h:panelGrid>
-                </center>    
-            </form>
+                <h:panelGrid columns="1">
+                    <p:commandButton  value="Acessar" ajax="false"/>
+                </h:panelGrid>
+            </h:form>     
         </div>
-
-
-
-        <p:spacer height="50" width="50"/>
-
-
-
     </h:body>
 </html>

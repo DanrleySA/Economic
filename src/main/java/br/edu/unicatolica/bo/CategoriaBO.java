@@ -36,7 +36,8 @@ public class CategoriaBO implements Serializable {
     public List<Categoria> getCategorias(CategoriaFilter categoriaFilter) {
         return CategoriaDAO.getInstance().getCategorias(categoriaFilter);
     }
-    public List<Categoria> getCategoriasUsuario(CategoriaFilter categoriaFilter, Usuario usuario){
+
+    public List<Categoria> getCategoriasUsuario(CategoriaFilter categoriaFilter, Usuario usuario) {
         return CategoriaDAO.getInstance().getCategoriasUsuario(categoriaFilter, usuario);
     }
 }

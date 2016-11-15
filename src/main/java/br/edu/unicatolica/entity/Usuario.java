@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -28,13 +27,9 @@ public class Usuario implements Serializable, EntidadeBase {
     private String email;
     private String senha;
     private List<Grupo> grupos;
-    private List<Categoria> categorias;
-    private List<MovimentacaoFinanceira> movimentacoes;
 
     public Usuario() {
         grupos = new ArrayList<>();
-        categorias = new ArrayList<>();
-        movimentacoes = new ArrayList<>();
     }
 
     @Id
@@ -84,24 +79,6 @@ public class Usuario implements Serializable, EntidadeBase {
 
     public void setGrupos(List<Grupo> grupos) {
         this.grupos = grupos;
-    }
-
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    public List<Categoria> getCategorias() {
-        return categorias;
-    }
-
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
-    }
-
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    public List<MovimentacaoFinanceira> getMovimentacoes() {
-        return movimentacoes;
-    }
-
-    public void setMovimentacoes(List<MovimentacaoFinanceira> movimentacoes) {
-        this.movimentacoes = movimentacoes;
     }
 
     //<editor-fold defaultstate="collapsed" desc="equals and hashCode">

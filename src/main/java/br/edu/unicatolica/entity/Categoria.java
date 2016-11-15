@@ -2,7 +2,6 @@ package br.edu.unicatolica.entity;
 
 import br.edu.unicatolica.dao.EntidadeBase;
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,7 +43,7 @@ public class Categoria implements Serializable, EntidadeBase {
         this.descricao = descricao;
     }
 
-    @ManyToOne()
+    @ManyToOne
     public Usuario getUsuario() {
         return usuario;
     }
@@ -53,6 +52,7 @@ public class Categoria implements Serializable, EntidadeBase {
         this.usuario = usuario;
     }
 
+//<editor-fold defaultstate="collapsed" desc="equals and hashCode">
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -82,5 +82,6 @@ public class Categoria implements Serializable, EntidadeBase {
         }
         return true;
     }
-
+//</editor-fold>
+    
 }

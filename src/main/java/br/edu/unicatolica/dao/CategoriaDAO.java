@@ -65,7 +65,7 @@ public class CategoriaDAO extends GenericoDAO<Categoria> implements Serializable
             Session session = em.unwrap(Session.class);
             Criteria criteria = session.createCriteria(Categoria.class);
             criteria.add(Restrictions.eq("usuario", usuario));
-            
+
             if (StringUtils.isNotBlank(categoriaFilter.getDescricao())) {
                 criteria.add(Restrictions.ilike("descricao", categoriaFilter.getDescricao(), MatchMode.ANYWHERE));
 

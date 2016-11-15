@@ -33,6 +33,7 @@ public class Movimentacao implements Serializable, EntidadeBase {
     public void setId(Long id) {
         this.id = id;
     }
+
     @Column(nullable = false, length = 10)
     public String getDescricao() {
         return descricao;
@@ -42,6 +43,7 @@ public class Movimentacao implements Serializable, EntidadeBase {
         this.descricao = descricao;
     }
 
+//<editor-fold defaultstate="collapsed" desc="equals and hashCode">
     @Override
     public int hashCode() {
         int hash = 3;
@@ -66,5 +68,6 @@ public class Movimentacao implements Serializable, EntidadeBase {
         }
         return true;
     }
+//</editor-fold>
 
 }
