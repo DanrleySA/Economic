@@ -58,10 +58,10 @@
                                     <f:selectItem itemLabel="Pendente" itemValue="PENDENTE"/>
                                 </p:selectOneRadio>
 
-                                <p:outputLabel value="Data:"/>
+                                <p:outputLabel value="Data: "/>
                                 <p:calendar value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.dataVencimento}"/>
 
-                                <p:outputLabel value="Valor:"/>
+                                <p:outputLabel value="Valor: "/>
                                 <p:inputNumber value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.valor}" 
                                                required="true" decimalSeparator=","  thousandSeparator="."
                                                requiredMessage="O campo 'Preço' é obrigatório!" 
