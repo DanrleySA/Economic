@@ -9,16 +9,21 @@
                 class="#{view.viewId eq '/private/home.xhtml' ? 'is-selected' : ''}"><h:link
                     outcome="/private/home.xhtml">
                     <i class="fa  fa-fw  fa-home"></i>Home</h:link></li>
-            <li><h:link>
+            <li><h:link outcome="/private/movimentacoes/cadastrar-movimentacao.xhmtl">
                     <i class="fa  fa-fw  fa-compress"></i>Movimentações</h:link></li>
             <li
                 class="#{(view.viewId eq '/private/categorias/cadastrar-categoria.xhtml') or (view.viewId eq '/private/categorias/listar-categorias.xhtml') ? 'is-selected' : ''}">
                 <h:link outcome="/private/categorias/cadastrar-categoria.xhtml">
                     <i class="fa  fa-fw  fa-list-ul"></i>Categorias</h:link>
             </li>
-            <li><p:button href="/j_spring_security_logout" 
-                          icon="fa  fa-fw  fa-sign-out"
-                          value="Sair" /></li>
+            
+            <h:form onsubmit="action='#{request.contextPath}/j_spring_security_logout';">
+            <li>
+                <p:commandLink ajax="false">
+                    <i class="fa  fa-fw  fa-sign-out"></i>Sair</p:commandLink>
+            </li>
+                </h:form>
+           
         </ul>
     </nav>
 

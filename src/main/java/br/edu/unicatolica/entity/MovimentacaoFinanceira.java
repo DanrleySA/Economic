@@ -7,6 +7,7 @@ package br.edu.unicatolica.entity;
 
 import br.edu.unicatolica.dao.EntidadeBase;
 import br.edu.unicatolica.enumeration.Status;
+import br.edu.unicatolica.enumeration.TipoMovimentacao;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -30,12 +31,13 @@ import javax.persistence.TemporalType;
 public class MovimentacaoFinanceira implements Serializable, EntidadeBase {
 
     private Long id;
-    private Movimentacao tipo;
+    private String descricao;
     private Categoria categoria;
     private Date dataVencimento;
     private Status status;
     private BigDecimal valor;
     private Usuario usuario;
+    private TipoMovimentacao tipo;
 
     public MovimentacaoFinanceira() {
         setValor(new BigDecimal("0.00"));
@@ -52,14 +54,13 @@ public class MovimentacaoFinanceira implements Serializable, EntidadeBase {
         this.id = id;
     }
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    public Movimentacao getTipo() {
-        return tipo;
+    @Column(nullable = false, length = 150)
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setTipo(Movimentacao tipo) {
-        this.tipo = tipo;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     @ManyToOne
@@ -108,6 +109,16 @@ public class MovimentacaoFinanceira implements Serializable, EntidadeBase {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    public TipoMovimentacao getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoMovimentacao tipo) {
+        this.tipo = tipo;
     }
 
 //<editor-fold defaultstate="collapsed" desc="equals and hashCode">

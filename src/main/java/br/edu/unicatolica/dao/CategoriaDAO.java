@@ -75,4 +75,17 @@ public class CategoriaDAO extends GenericoDAO<Categoria> implements Serializable
             em.close();
         }
     }
+
+    public List<Categoria> getCategoriasSemFiltro(Usuario usuario) {
+        EntityManager em = JPAUtil.createEntityManager();
+        try {
+            Session session = em.unwrap(Session.class);
+            Criteria criteria = session.createCriteria(Categoria.class);
+            criteria.add(Restrictions.eq("usuario", usuario));
+
+            return criteria.list();
+        } finally {
+            em.close();
+        }
+    }
 }
