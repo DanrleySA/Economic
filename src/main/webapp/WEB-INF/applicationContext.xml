@@ -9,6 +9,7 @@
     <beans:bean id="appUserDetailsService" class="br.edu.unicatolica.security.AppUserDetailsService"/>
     <http pattern="/javax.faces.resource/**" security="none"/>
     <http pattern="/public/login.xhtml" security="none"/>
+    <http pattern="/resources/**" security="none"/>
      
     <http auto-config="false" use-expressions="true">
         <intercept-url pattern="/private/**" access="isAuthenticated()" />
