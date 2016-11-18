@@ -6,7 +6,7 @@
 package br.edu.unicatolica.entity;
 
 import br.edu.unicatolica.dao.EntidadeBase;
-import br.edu.unicatolica.enumeration.Status;
+import br.edu.unicatolica.enumeration.StatusMovimentacao;
 import br.edu.unicatolica.enumeration.TipoMovimentacao;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -34,7 +34,7 @@ public class MovimentacaoFinanceira implements Serializable, EntidadeBase {
     private String descricao;
     private Categoria categoria;
     private Date dataVencimento;
-    private Status status;
+    private StatusMovimentacao status;
     private BigDecimal valor;
     private Usuario usuario;
     private TipoMovimentacao tipo;
@@ -85,11 +85,11 @@ public class MovimentacaoFinanceira implements Serializable, EntidadeBase {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    public Status getStatus() {
+    public StatusMovimentacao getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(StatusMovimentacao status) {
         this.status = status;
     }
 

@@ -9,7 +9,7 @@ package br.edu.unicatolica.enumeration;
  *
  * @author Danrley
  */
-public enum Status {
+public enum StatusMovimentacao {
     CONCLUIDA,
     PENDENTE;
 }

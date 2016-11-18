@@ -8,7 +8,7 @@ import br.edu.unicatolica.enumeration.TipoUsuario;
  *
  * @author Danrley
  */
-public class MainTeste {
+public class CriaUsuario {
 
     public static void main(String[] args) {
 
