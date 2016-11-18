@@ -1,7 +1,6 @@
 package br.edu.unicatolica.security;
 
 import br.edu.unicatolica.dao.UsuarioDAO;
-import br.edu.unicatolica.entity.Grupo;
 import br.edu.unicatolica.entity.Usuario;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,17 +22,16 @@ public class AppUserDetailsService implements UserDetailsService {
         Usuario usuario = UsuarioDAO.getInstance().getUserPorNome(nome);
         UsuarioSistema user = null;
         if (usuario != null) {
-            user = new UsuarioSistema(usuario, getGrupos(usuario));
+            user = new UsuarioSistema(usuario, getPermissoes(usuario));
         }
         return user;
     }
 
-    private Collection<? extends GrantedAuthority> getGrupos(Usuario usuario) {
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        for (Grupo grupo : usuario.getGrupos()) {
-            authorities.add(new SimpleGrantedAuthority(grupo.getNome().toUpperCase()));
-        }
-        return authorities;
+    private Collection<? extends GrantedAuthority> getPermissoes(Usuario usuario) {
+        List<SimpleGrantedAuthority> permissoes = new ArrayList<>();
+        permissoes.add(new SimpleGrantedAuthority(usuario.getTipo().toString().toUpperCase()));
+
+        return permissoes;
     }
 
 }

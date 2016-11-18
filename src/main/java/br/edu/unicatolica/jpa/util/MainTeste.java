@@ -1,8 +1,8 @@
 package br.edu.unicatolica.jpa.util;
 
 import br.edu.unicatolica.dao.UsuarioDAO;
-import br.edu.unicatolica.entity.Grupo;
 import br.edu.unicatolica.entity.Usuario;
+import br.edu.unicatolica.enumeration.TipoUsuario;
 
 /**
  *
@@ -11,17 +11,13 @@ import br.edu.unicatolica.entity.Usuario;
 public class MainTeste {
 
     public static void main(String[] args) {
-       
-        Grupo g = new Grupo();
-        g.setNome("USUARIO");
-        g.setDescricao("USUARIO");
-        
+
         Usuario u = new Usuario();
         u.setEmail("dan@gmail.com");
         u.setNome("Danrley");
         u.setSenha("123");
-        u.getGrupos().add(g);
-        
+        u.setTipo(TipoUsuario.USUARIO);
+
         UsuarioDAO.getInstance().salvarOuAtualizar(u);
     }
 }
