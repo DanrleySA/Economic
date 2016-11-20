@@ -18,7 +18,7 @@
                     <p:panel header="Cadastrar Movimentação" styleClass="uncq-title-panel">
 
                         <f:facet name="actions">
-                            <p:link value="Listar Movimentações"
+                            <p:link value="Listar Movimentações" outcome="listar-movimentacoes.xhtml"
                                     styleClass="link-navegacao" />
                         </f:facet>
 
@@ -59,7 +59,8 @@
                                 </p:selectOneRadio>
 
                                 <p:outputLabel value="Data: "/>
-                                <p:calendar value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.dataVencimento}"/>
+                                <p:calendar value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.dataVencimento}">
+                                </p:calendar>
 
                                 <p:outputLabel value="Valor: "/>
                                 <p:inputNumber value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.valor}" 
@@ -71,10 +72,10 @@
 
                             </h:panelGrid>    
                             <hr />
-                                <p:commandButton value="Salvar" icon="fa fa-save"
-                                                 action="#{cadastroMovFinanceiraBean.salvar()}"
-                                                 styleClass="botao-laranja" update="frm"/>
-                            </h:form>
+                            <p:commandButton value="Salvar" icon="fa fa-save"
+                                             action="#{cadastroMovFinanceiraBean.salvar()}"
+                                             styleClass="botao-laranja" update="frm"/>
+                        </h:form>
                     </p:panel>
                 </div>
 

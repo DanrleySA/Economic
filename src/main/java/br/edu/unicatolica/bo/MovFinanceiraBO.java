@@ -8,7 +8,9 @@ package br.edu.unicatolica.bo;
 import br.edu.unicatolica.dao.MovFinanceiraDAO;
 import br.edu.unicatolica.entity.MovimentacaoFinanceira;
 import br.edu.unicatolica.entity.Usuario;
+import br.edu.unicatolica.enumeration.TipoMovimentacao;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,7 +39,7 @@ public class MovFinanceiraBO implements Serializable {
         MovFinanceiraDAO.getInstance().remover(MovimentacaoFinanceira.class, mov);
     }
 
-    public List<MovimentacaoFinanceira> getMovimentacoes(Usuario usuario) {
-        return MovFinanceiraDAO.getInstance().getMovimentacoes(usuario);
+    public List<MovimentacaoFinanceira> getMovimentacoes(TipoMovimentacao tipo, Date dataInicial, Date dataFinal, Usuario usuario) {
+        return MovFinanceiraDAO.getInstance().getMovimentacoes(tipo, dataInicial, dataFinal, usuario);
     }
 }

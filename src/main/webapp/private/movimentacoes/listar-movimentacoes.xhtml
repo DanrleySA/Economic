@@ -14,34 +14,47 @@
 
                 <div class="ui-g-10 ui-md-10 ui-lg-10">
                     <p:messages autoUpdate="true" closable="true" />
-                    <p:panel header="Listar Categorias" styleClass="uncq-title-panel">
+                    <p:panel header="Listar Movimentações" styleClass="uncq-title-panel">
                         <f:facet name="actions">
-                            <p:link value="Nova Categoria"
-                                    outcome="cadastrar-categoria.xhtml" styleClass="link-navegacao" />
+                            <p:link value="Nova Movimentacao"
+                                    outcome="cadastrar-movimentacao.xhtml" styleClass="link-navegacao" />
                         </f:facet>
 
-                        <h:form id="frm-categoria">
+                        <h:form id="frm-movimentacao">
 
-                            <h:panelGrid columns="3">
-                                <p:inputText size="30" placeholder="Pesquisar por descrição"
-                                             value="#{consultaCategoriaBean.categoriaFilter.descricao}" />
+                            <p:panelGrid columns="2" styleClass="ui-panelgrid-blank" layout="tabular" >
+                                <p:outputLabel value="Tipo: "/>
+                                <p:selectOneRadio value="#{consultaMovFinanceiraBean.tipo}" layout="grid" columns="2">
+                                    <f:selectItem itemLabel="Receita" itemValue="RECEITA"/>
+                                    <f:selectItem itemLabel="Despesa" itemValue="DESPESA"/>
+                                </p:selectOneRadio>
+                            </p:panelGrid>
+                            <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" >
+                                <p:outputLabel value="De: "/>
+                                <p:calendar value="#{consultaMovFinanceiraBean.dataInicial}">
+                                </p:calendar>
 
-                                <p:spacer height="0" width="10" />
+                                <p:outputLabel value="Até:  "/>
+                                <p:calendar value="#{consultaMovFinanceiraBean.dataFinal}">
+                                </p:calendar>
 
                                 <p:commandButton value="Pesquisar" styleClass="botao-laranja"
                                                  icon="fa fa-search"
-                                                 action="#{consultaCategoriaBean.pesquisar()}"
-                                                 update="tabela-categorias" />
+                                                 action="#{consultaMovFinanceiraBean.pesquisarMovimentacoes()}"
+                                                 update="tabela-movimentacoes" />
+                            </p:panelGrid>
+                            <h:panelGrid columns="3" >
+
                             </h:panelGrid>
 
                             <br />
 
-                            <p:dataTable id="tabela-categorias"
-                                         value="#{consultaCategoriaBean.categorias}" var="cat"
-                                         emptyMessage="Nenhuma categoria encontrada." reflow="true">
+                            <p:dataTable id="tabela-movimentacoes"
+                                         value="#{consultaMovFinanceiraBean.movimentacoes}" var="mov"
+                                         emptyMessage="Nenhuma movimentação encontrada." reflow="true">
 
                                 <p:column headerText="Descrição">
-                                    <p:outputLabel value="#{cat.descricao}" />
+                                    <p:outputLabel value="#{mov.descricao}" />
                                 </p:column>
 
                                 <p:column headerText="Ações" width="100">
