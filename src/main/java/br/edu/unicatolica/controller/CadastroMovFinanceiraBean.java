@@ -12,6 +12,7 @@ import br.edu.unicatolica.entity.Categoria;
 import br.edu.unicatolica.entity.MovimentacaoFinanceira;
 import br.edu.unicatolica.entity.Usuario;
 import br.edu.unicatolica.jsf.util.FacesUtil;
+import br.edu.unicatolica.security.Seguranca;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -35,7 +36,7 @@ public class CadastroMovFinanceiraBean implements Serializable {
     public CadastroMovFinanceiraBean() {
         limpar();
         movimentacaoFinanceira = new MovimentacaoFinanceira();
-        movimentacaoFinanceira.setUsuario(buscarUsuario());
+        movimentacaoFinanceira.setUsuario(new Seguranca().getUsuarioLogado().getUsuario());
         pesquisarCategorias();
     }
 

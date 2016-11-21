@@ -8,14 +8,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import br.edu.unicatolica.bo.CategoriaBO;
-import br.edu.unicatolica.dao.UsuarioDAO;
 import br.edu.unicatolica.entity.Categoria;
 import br.edu.unicatolica.filter.CategoriaFilter;
 import br.edu.unicatolica.jsf.util.FacesUtil;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
+import br.edu.unicatolica.security.Seguranca;
 
 @ManagedBean
 @ViewScoped
@@ -45,11 +41,8 @@ public class ConsultaCategoriaBean implements Serializable {
     }
 
     public void pesquisar() {
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
         categorias = CategoriaBO.getInstance().getCategoriasUsuario(
-                categoriaFilter,
-                UsuarioDAO.getInstance().getUserPorNome(((User) authentication.getPrincipal()).getUsername()));
+                categoriaFilter,new Seguranca().getUsuarioLogado().getUsuario());
     }
 
     private void limpar() {

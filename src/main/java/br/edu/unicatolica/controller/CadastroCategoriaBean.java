@@ -6,13 +6,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import br.edu.unicatolica.bo.CategoriaBO;
-import br.edu.unicatolica.dao.UsuarioDAO;
 import br.edu.unicatolica.entity.Categoria;
 import br.edu.unicatolica.jsf.util.FacesUtil;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
+import br.edu.unicatolica.security.Seguranca;
 
 @ManagedBean
 @ViewScoped
@@ -28,9 +24,7 @@ public class CadastroCategoriaBean implements Serializable {
 
     public void salvar() {
         if (categoria.getId() == null) {
-            SecurityContext context = SecurityContextHolder.getContext();
-            Authentication authentication = context.getAuthentication();
-            categoria.setUsuario(UsuarioDAO.getInstance().getUserPorNome(((User) authentication.getPrincipal()).getUsername()));
+            categoria.setUsuario(new Seguranca().getUsuarioLogado().getUsuario());
             CategoriaBO.getInstance().salvarOuAtualizar(categoria);
 
             FacesUtil.addInfoMessage("Categoria cadastrada com sucesso!");
