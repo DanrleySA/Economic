@@ -40,8 +40,14 @@ public class CadastroMovFinanceiraBean implements Serializable {
     }
 
     public void salvar() {
-        MovFinanceiraBO.getInstance().salvarOuAtualizar(movimentacaoFinanceira);
-        FacesUtil.addInfoMessage("Movimentação salva com sucesso");
+        if (movimentacaoFinanceira.getId() == null) {
+            MovFinanceiraBO.getInstance().salvarOuAtualizar(movimentacaoFinanceira);
+            FacesUtil.addInfoMessage("Movimentação salva com sucesso");
+        } else {
+            MovFinanceiraBO.getInstance().salvarOuAtualizar(movimentacaoFinanceira);
+            FacesUtil.addInfoMessage("Movimentação atualizada com sucesso.");
+        }
+        limpar();
     }
 
     public Usuario buscarUsuario() {

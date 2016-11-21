@@ -35,7 +35,8 @@ public class ConsultaMovFinanceiraBean implements Serializable {
     private Date dataFinal;
 
     public void pesquisarMovimentacoes() {
-        movimentacoes = MovFinanceiraBO.getInstance().getMovimentacoes(tipoSelecionado, dataInicial, dataFinal, buscarUsuario());
+        movimentacoes = MovFinanceiraBO.getInstance().getMovimentacoes(
+                tipoSelecionado, dataInicial, dataFinal, buscarUsuario());
     }
 
     public Usuario buscarUsuario() {

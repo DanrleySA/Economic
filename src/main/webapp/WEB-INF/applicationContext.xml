@@ -8,6 +8,21 @@
 
     <beans:bean id="appUserDetailsService" class="br.edu.unicatolica.security.AppUserDetailsService"/>
     
+    <http pattern="/javax.faces.resource/**" security="none"/>
+    <http pattern="/public/**" security="none"/>
+    <http pattern="/resources/**" security="none"/>
+     
+    <http auto-config="false" use-expressions="true">
+        <custom-filter ref="exceptionTranslationFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
+        
+        <intercept-url pattern="/private/**" access="isAuthenticated()" />
+        
+        <intercept-url pattern="/**" access="denyAll"/>
+        <form-login login-page="/public/login.xhtml" authentication-failure-url="/public/login.xhtml?invalid=true"
+                    default-target-url="/" always-use-default-target="true"/>
+        <logout logout-url="/j_spring_security_logout" invalidate-session="true"/>
+    </http>
+    
     <beans:bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter">
         <beans:property name="accessDeniedHandler" ref="jsfAccessDeniedHandler"/>
         <beans:property name="authenticationEntryPoint" ref="authenticationEntryPoint"/>
@@ -24,20 +39,6 @@
     </beans:bean >
     
     <beans:bean id="jsfRedirectStrategy" class="br.edu.unicatolica.security.JsfRedirectStrategy"/>
-    
-    <http pattern="/javax.faces.resource/**" security="none"/>
-    <http pattern="/public/login.xhtml" security="none"/>
-    <http pattern="/resources/**" security="none"/>
-     
-    <http auto-config="false" use-expressions="true">
-        <custom-filter ref="exceptionTranslationFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
-        
-        <intercept-url pattern="/private/**" access="isAuthenticated()" />
-        <intercept-url pattern="/**" access="denyAll"/>
-        <form-login login-page="/public/login.xhtml" authentication-failure-url="/public/login.xhtml?invalid=true"
-                    default-target-url="/" always-use-default-target="true"/>
-        <logout logout-url="/j_spring_security_logout" invalidate-session="true"/>
-    </http>
         
     <authentication-manager>
         <authentication-provider user-service-ref="appUserDetailsService">

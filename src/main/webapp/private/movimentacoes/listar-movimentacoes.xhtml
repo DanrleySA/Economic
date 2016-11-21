@@ -57,28 +57,33 @@
                                     <p:outputLabel value="#{mov.descricao}" />
                                 </p:column>
 
+                                <p:column headerText="Status">
+                                    <p:outputLabel value="#{mov.status}"/>
+                                </p:column>
+
+                                <p:column headerText="Valor">
+                                    <p:outputLabel value="#{mov.valor}">
+                                        <f:convertNumber type="currency" />
+                                    </p:outputLabel>
+                                </p:column>
+
+                                <p:column headerText="Categoria">
+                                    <p:outputLabel value="#{mov.categoria.descricao}"/>
+                                </p:column>
+
                                 <p:column headerText="Ações" width="100">
                                     <center>
-                                        <p:commandLink id="editar-cat"
-                                                       oncomplete="PF('dlgEdicaoCategoria').show()"
-                                                       update=":frm-dlg-edicao-categoria:dlg-edicao-categoria">
+                                        <p:commandLink id="editar-mov"
+                                                       oncomplete="PF('dlgEdicaoMovimentacao').show()"
+                                                       update=":frm-dlg-edicao-movimentacao:dlg-edicao-movimentacao">
                                             <i class="material-icons">mode_edit</i>
-                                            <f:setPropertyActionListener value="#{cat}"
-                                                                         target="#{cadastroCategoriaBean.categoria}" />
+                                            <f:setPropertyActionListener value="#{mov}"
+                                                                         target="#{cadastroMovFinanceiraBean.movimentacaoFinanceira}" />
                                         </p:commandLink>
 
                                         <p:spacer width="10" />
 
-                                        <p:commandLink id="excluir-cat"
-                                                       oncomplete="PF('dlgExcluirCategoria').show()"
-                                                       update=":frm-dlg-exclusao-categoria:dlg-exclusao-categoria">
-                                            <i class="material-icons">delete_forever</i>
-                                            <f:setPropertyActionListener value="#{cat}"
-                                                                         target="#{consultaCategoriaBean.categoriaSelecionada}" />
-                                        </p:commandLink>
-
-                                        <p:tooltip value="Editar" for="editar-cat" position="bottom" showEffect="clip" hideEffect="clip"/>
-                                        <p:tooltip value="Excluir" for="excluir-cat" position="bottom" showEffect="clip" hideEffect="clip"/>
+                                        <p:tooltip value="Editar" for="editar-mov" position="bottom" showEffect="clip" hideEffect="clip"/>
                                     </center>
                                 </p:column>
                             </p:dataTable>
@@ -90,37 +95,65 @@
             </div>
         </div>
 
-        <!-- DIALOGO EDICAO CATEGORIA -->
-        <h:form id="frm-dlg-edicao-categoria">
-            <p:dialog header="Editar Categoria" widgetVar="dlgEdicaoCategoria"
-                      resizable="false" id="dlg-edicao-categoria" showEffect="clip"
+        <!-- DIALOGO EDICAO MOVIMENTACAO -->
+        <h:form id="frm-dlg-edicao-movimentacao">
+            <p:dialog header="Editar Movimentacao" widgetVar="dlgEdicaoMovimentacao"
+                      resizable="false" id="dlg-edicao-movimentacao" showEffect="clip"
                       hideEffect="clip" modal="true" draggable="false" width="350"
                       closable="true" closeOnEscape="true" responsive="true">
 
                 <h:panelGrid columns="1" style="width: 100%">
-                    <p:outputLabel value="Descrição da categoria: "
-                                   for="descricao-edicao-categoria" styleClass="label-form" />
-                    <p:inputText id="descricao-edicao-categoria"
+                    <p:outputLabel value="Descrição da movimentacao "
+                                   for="descricao-edicao-movimentacao" styleClass="label-form" />
+                    <p:inputText id="descricao-edicao-movimentacao"
                                  style="width: 100%; margin-top: 10px" required="true"
                                  requiredMessage="O campo 'Descrição' é obrigatório!"
-                                 value="#{cadastroCategoriaBean.categoria.descricao}"
-                                 placeholder="Insira uma descrição para a categoria" />
+                                 value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.descricao}"
+                                 placeholder="Insira uma descrição para a movimentacao" />
+                </h:panelGrid>
 
+                <h:panelGrid columns="2" style="width: 100%">
+                    <p:outputLabel value="Categoria" styleClass="label-form"/>
+                    <p:selectOneMenu value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.categoria}" 
+                                     required="true" >
+                        <f:selectItems value="#{cadastroMovFinanceiraBean.categorias}" var="categoria"
+                                       itemValue="#{categoria}" itemLabel="#{categoria.descricao}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Data de vencimento" styleClass="label-form"/>
+                    <p:calendar value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.dataVencimento}" 
+                                required="true" size="15"/>
+
+                    <p:outputLabel value="Valor: " styleClass="label-form"/>
+                    <p:inputNumber value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.valor}" 
+                                   required="true" decimalSeparator=","  thousandSeparator="."
+                                   requiredMessage="O campo 'Preço' é obrigatório!" 
+                                   size="15">
+                    </p:inputNumber>
+
+                    <p:outputLabel value="Status: " styleClass="label-form"/>
+                    <p:selectOneRadio value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.status}" required="true">
+                        <f:selectItem itemLabel="Concluída" itemValue="CONCLUIDA"/>
+                        <f:selectItem itemLabel="Pendente" itemValue="PENDENTE"/>
+                    </p:selectOneRadio>
+                </h:panelGrid >
+
+                <h:panelGrid columns="1" style="width: 100%">
                     <center>
                         <p:separator />
 
                         <h:panelGrid columns="4">
-                            <p:commandButton id="update-categoria"
-                                             value="Atualizar categoria"
-                                             action="#{cadastroCategoriaBean.salvar()}" ajax="false"
+                            <p:commandButton id="update-movimentacao"
+                                             value="Atualizar movimentacao"
+                                             action="#{cadastroMovFinanceiraBean.salvar()}" ajax="false"
                                              styleClass="botao-laranja"
-                                             update=":frm-categoria:tabela-categorias"
+                                             update=":frm-movimentacao:tabela-movimentacoes"
                                              icon="fa  fa-fw  fa-pencil" style="width:100%" />
 
                             <p:spacer width="10" />
 
                             <p:commandButton id="voltar" value="Voltar"
-                                             oncomplete="PF('dlgEdicaoCategoria').hide();"
+                                             oncomplete="PF('dlgEdicaoMovimentacao').hide();"
                                              icon="fa  fa-fw  fa-mail-reply" styleClass="botao-voltar" />
                         </h:panelGrid>
                     </center>
@@ -128,43 +161,6 @@
             </p:dialog>
         </h:form>
 
-        <!-- DIALOGO EXCLUSAO CATEGORIA -->
-        <h:form id="frm-dlg-exclusao-categoria">
-            <p:dialog header="Excluir categoria" widgetVar="dlgExcluirCategoria"
-                      resizable="false" id="dlg-exclusao-categoria" showEffect="clip"
-                      hideEffect="clip" modal="true" draggable="false" width="500"
-                      closable="true" closeOnEscape="true" responsive="true">
-
-                <h:panelGrid columns="1" style="width: 100%">
-
-                    <h:panelGroup>
-                        <i class="material-icons">report_problem</i>
-                        <p:spacer width="10" height="0" />
-                        <p:outputLabel
-                            value="Deseja realmente excluir a categoria '#{consultaCategoriaBean.categoriaSelecionada.descricao}' ?"
-                            style="font-weight: bolder;" />
-                    </h:panelGroup>
-
-                    <p:separator />
-
-                    <h:panelGroup>
-                        <center>
-                            <p:commandButton id="botao-excluir-categoria"
-                                             value="Excluir Categoria"
-                                             action="#{consultaCategoriaBean.remover()}"
-                                             update=":frm-categoria:tabela-categorias" ajax="false"
-                                             styleClass="botao-cancelar" icon="fa  fa-fw  fa-remove" />
-
-                            <p:spacer width="10" height="0" />
-
-                            <p:commandButton id="voltar" value="Voltar"
-                                             oncomplete="PF('dlgExcluirCategoria').hide();"
-                                             icon="fa  fa-fw  fa-mail-reply" styleClass="botao-voltar" />
-                        </center>
-                    </h:panelGroup>
-                </h:panelGrid>
-            </p:dialog>
-        </h:form>
     </ui:define>
 
 </ui:composition>
