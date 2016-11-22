@@ -10,6 +10,7 @@ import br.edu.unicatolica.dao.UsuarioDAO;
 import br.edu.unicatolica.entity.MovimentacaoFinanceira;
 import br.edu.unicatolica.entity.Usuario;
 import br.edu.unicatolica.enumeration.TipoMovimentacao;
+import br.edu.unicatolica.jsf.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,6 +34,13 @@ public class ConsultaMovFinanceiraBean implements Serializable {
     private TipoMovimentacao tipoSelecionado;
     private Date dataInicial;
     private Date dataFinal;
+    private MovimentacaoFinanceira movSelecionada;
+
+    public void remover() {
+        MovFinanceiraBO.getInstance().remover(movSelecionada);
+        movimentacoes.remove(movSelecionada);
+        FacesUtil.addInfoMessage("Movimentação excluída com sucesso!");
+    }
 
     public void pesquisarMovimentacoes() {
         movimentacoes = MovFinanceiraBO.getInstance().getMovimentacoes(
@@ -91,6 +99,14 @@ public class ConsultaMovFinanceiraBean implements Serializable {
 
     public void setDataFinal(Date dataFinal) {
         this.dataFinal = dataFinal;
+    }
+
+    public MovimentacaoFinanceira getMovSelecionada() {
+        return movSelecionada;
+    }
+
+    public void setMovSelecionada(MovimentacaoFinanceira movSelecionada) {
+        this.movSelecionada = movSelecionada;
     }
 
 }

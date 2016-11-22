@@ -83,7 +83,16 @@
 
                                         <p:spacer width="10" />
 
+                                        <p:commandLink id="excluir-mov"
+                                                       oncomplete="PF('dlgExcluirMovimentacao').show()"
+                                                       update=":frm-dlg-exclusao-movimentacao:dlg-exclusao-movimentacao">
+                                            <i class="material-icons">delete_forever</i>
+                                            <f:setPropertyActionListener value="#{mov}"
+                                                                         target="#{consultaMovFinanceiraBean.movSelecionada}" />
+                                        </p:commandLink>
+
                                         <p:tooltip value="Editar" for="editar-mov" position="bottom" showEffect="clip" hideEffect="clip"/>
+                                        <p:tooltip value="Excluir" for="excluir-mov" position="bottom" showEffect="clip" hideEffect="clip"/>
                                     </center>
                                 </p:column>
                             </p:dataTable>
@@ -114,7 +123,7 @@
 
                 <h:panelGrid columns="2" style="width: 100%">
                     <p:outputLabel value="Categoria" styleClass="label-form"/>
-                    <p:selectOneMenu value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.categoria}" 
+                    <p:selectOneMenu value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.categoria}"  
                                      required="true" >
                         <f:selectItems value="#{cadastroMovFinanceiraBean.categorias}" var="categoria"
                                        itemValue="#{categoria}" itemLabel="#{categoria.descricao}"/>
@@ -143,8 +152,8 @@
                         <p:separator />
 
                         <h:panelGrid columns="4">
-                            <p:commandButton id="update-movimentacao"
-                                             value="Atualizar movimentacao"
+                            <p:commandButton id="update-categoria"
+                                             value="Atualizar movimentacão"
                                              action="#{cadastroMovFinanceiraBean.salvar()}" ajax="false"
                                              styleClass="botao-laranja"
                                              update=":frm-movimentacao:tabela-movimentacoes"
@@ -157,6 +166,45 @@
                                              icon="fa  fa-fw  fa-mail-reply" styleClass="botao-voltar" />
                         </h:panelGrid>
                     </center>
+                </h:panelGrid>
+            </p:dialog>
+        </h:form>
+
+        <!-- DIALOGO EXCLUSAO MOVIMENTACAO -->
+        <h:form id="frm-dlg-exclusao-movimentacao">
+            <p:dialog header="Excluir movimentacao" widgetVar="dlgExcluirMovimentacao"
+                      resizable="false" id="dlg-exclusao-movimentacao" showEffect="clip"
+                      hideEffect="clip" modal="true" draggable="false" width="500"
+                      closable="true" closeOnEscape="true" responsive="true">
+
+                <h:panelGrid columns="1" style="width: 100%">
+
+                    <h:panelGroup>
+                        <i class="material-icons">report_problem</i>
+                        <p:spacer width="10" height="0" />
+                        <p:outputLabel
+                            value="Deseja realmente excluir a movimentacao 
+                            '#{consultaMovFinanceiraBean.movSelecionada.descricao}' ?"
+                            style="font-weight: bolder;" />
+                    </h:panelGroup>
+
+                    <p:separator />
+
+                    <h:panelGroup>
+                        <center>
+                            <p:commandButton id="botao-excluir-categoria"
+                                             value="Excluir Movimentação"
+                                             action="#{consultaMovFinanceiraBean.remover()}"
+                                             update=":frm-movimentacao:tabela-movimentacoes" ajax="false"
+                                             styleClass="botao-cancelar" icon="fa  fa-fw  fa-remove" />
+
+                            <p:spacer width="10" height="0" />
+
+                            <p:commandButton id="voltar" value="Voltar"
+                                             oncomplete="PF('dlgExcluirMovimentacao').hide();"
+                                             icon="fa  fa-fw  fa-mail-reply" styleClass="botao-voltar" />
+                        </center>
+                    </h:panelGroup>
                 </h:panelGrid>
             </p:dialog>
         </h:form>
