@@ -32,7 +32,7 @@
                             <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" >
                                 <p:outputLabel value="De: "/>
                                 <p:calendar value="#{consultaMovFinanceiraBean.dataInicial}" locale="pt"/>
-                                
+
 
                                 <p:outputLabel value="Até:  "/>
                                 <p:calendar value="#{consultaMovFinanceiraBean.dataFinal}" locale="pt"/>
@@ -66,8 +66,8 @@
                                     </p:outputLabel>
                                 </p:column>
 
-                                <p:column headerText="Categoria">
-                                    <p:outputLabel value="#{mov.categoria.descricao}"/>
+                                <p:column headerText="Categoria" sortBy="#{mov.categoria.descricao}">
+                                    <p:outputLabel value="#{mov.categoria.descricao}" />
                                 </p:column>
 
                                 <p:column headerText="Ações" width="100">
