@@ -42,4 +42,6 @@ public class MovFinanceiraBO implements Serializable {
     public List<MovimentacaoFinanceira> getMovimentacoes(TipoMovimentacao tipo, Date dataInicial, Date dataFinal, Usuario usuario) {
         return MovFinanceiraDAO.getInstance().getMovimentacoes(tipo, dataInicial, dataFinal, usuario);
     }
+    
+    
 }

@@ -59,7 +59,8 @@
                                 </p:selectOneRadio>
 
                                 <p:outputLabel value="Data: "/>
-                                <p:calendar value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.dataVencimento}"/>
+                                <p:calendar value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.dataVencimento}"
+                                            locale="pt" required="true" requiredMessage="O campo 'Data' é obrigatório!"/>
 
                                 <p:outputLabel value="Valor: "/>
                                 <p:inputNumber value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.valor}" 

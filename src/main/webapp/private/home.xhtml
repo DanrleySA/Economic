@@ -8,6 +8,8 @@
     <ui:define name="titulo">Home</ui:define>
 
     <ui:define name="content">
+        <f:viewParam name = "dummy" /> 
+        <f:event listener="#{graficoMovBean.preRender()}" type="preRenderView"/>
         <div class="ui-g">
             <div class="ui-g-12 ui-md-12 ui-lg-12">
                 <div class="ui-g-1 ui-md-1 ui-lg-1"></div>
@@ -16,7 +18,18 @@
                     <p:panel header="Home" styleClass="uncq-title-panel">
 
                         <!-- CONTEÚDO AQUI... -->
+                        <h:form>
+                            <p:outputLabel value="Nº de dias: " styleClass="label-form"/>
+                            <p:inputText value="#{graficoMovBean.numeroDeDias}" maxlength="3">
+                                <p:ajax event="change" update="grafico"/>
+                            </p:inputText>
 
+                            <h:panelGrid style="width: 100%">
+
+                                <p:chart id="grafico" type="line" model="#{graficoMovBean.model}" responsive="true"
+                                         style="height: 300px;"  />
+                            </h:panelGrid>
+                        </h:form>
                     </p:panel>
                 </div>
 

@@ -31,12 +31,11 @@
                             </p:panelGrid>
                             <p:panelGrid columns="5" styleClass="ui-panelgrid-blank" >
                                 <p:outputLabel value="De: "/>
-                                <p:calendar value="#{consultaMovFinanceiraBean.dataInicial}">
-                                </p:calendar>
+                                <p:calendar value="#{consultaMovFinanceiraBean.dataInicial}" locale="pt"/>
+                                
 
                                 <p:outputLabel value="Até:  "/>
-                                <p:calendar value="#{consultaMovFinanceiraBean.dataFinal}">
-                                </p:calendar>
+                                <p:calendar value="#{consultaMovFinanceiraBean.dataFinal}" locale="pt"/>
 
                                 <p:commandButton value="Pesquisar" styleClass="botao-laranja"
                                                  icon="fa fa-search"
