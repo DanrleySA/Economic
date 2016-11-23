@@ -66,6 +66,7 @@ public class CadastroMovFinanceiraBean implements Serializable {
         movimentacaoFinanceira = new MovimentacaoFinanceira();
     }
 
+    //<editor-fold defaultstate="collapsed" desc="Getters & Setters">
     public MovimentacaoFinanceira getMovimentacaoFinanceira() {
         return movimentacaoFinanceira;
     }
@@ -81,5 +82,6 @@ public class CadastroMovFinanceiraBean implements Serializable {
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
+//</editor-fold>
 
 }

@@ -8,19 +8,16 @@ package br.edu.unicatolica.controller;
 import br.edu.unicatolica.bo.MovFinanceiraBO;
 import br.edu.unicatolica.dao.UsuarioDAO;
 import br.edu.unicatolica.entity.MovimentacaoFinanceira;
-import br.edu.unicatolica.entity.Usuario;
 import br.edu.unicatolica.enumeration.TipoMovimentacao;
 import br.edu.unicatolica.jsf.util.FacesUtil;
+import br.edu.unicatolica.security.Seguranca;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 
 /**
  *
@@ -44,16 +41,10 @@ public class ConsultaMovFinanceiraBean implements Serializable {
 
     public void pesquisarMovimentacoes() {
         movimentacoes = MovFinanceiraBO.getInstance().getMovimentacoes(
-                tipoSelecionado, dataInicial, dataFinal, buscarUsuario());
+                tipoSelecionado, dataInicial, dataFinal, new Seguranca().getUsuarioLogado().getUsuario());
     }
 
-    public Usuario buscarUsuario() {
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
-        return UsuarioDAO.getInstance().getUserPorNome(((User) authentication.getPrincipal()).getUsername());
-
-    }
-
+    //<editor-fold defaultstate="collapsed" desc="Getters & Setters">
     public List<MovimentacaoFinanceira> getMovimentacoes() {
         if (movimentacoes == null) {
             movimentacoes = new ArrayList<>();
@@ -108,5 +99,5 @@ public class ConsultaMovFinanceiraBean implements Serializable {
     public void setMovSelecionada(MovimentacaoFinanceira movSelecionada) {
         this.movSelecionada = movSelecionada;
     }
-
+//</editor-fold>
 }

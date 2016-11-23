@@ -72,7 +72,7 @@ public class Usuario implements Serializable, EntidadeBase {
         this.tipo = tipo;
     }
 
-    //<editor-fold defaultstate="collapsed" desc="equals and hashCode">
+    //<editor-fold defaultstate="collapsed" desc="Equals and HashCode">
     @Override
     public int hashCode() {
         int hash = 7;

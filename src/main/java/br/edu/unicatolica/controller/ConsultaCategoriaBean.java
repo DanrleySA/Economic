@@ -42,13 +42,14 @@ public class ConsultaCategoriaBean implements Serializable {
 
     public void pesquisar() {
         categorias = CategoriaBO.getInstance().getCategoriasUsuario(
-                categoriaFilter,new Seguranca().getUsuarioLogado().getUsuario());
+                categoriaFilter, new Seguranca().getUsuarioLogado().getUsuario());
     }
 
     private void limpar() {
         categoria = new Categoria();
     }
 
+    //<editor-fold defaultstate="collapsed" desc="Getters & Setters">
     public Categoria getCategoria() {
         return categoria;
     }
@@ -83,5 +84,5 @@ public class ConsultaCategoriaBean implements Serializable {
     public void setCategoriaSelecionada(Categoria categoriaSelecionada) {
         this.categoriaSelecionada = categoriaSelecionada;
     }
-
+//</editor-fold>
 }

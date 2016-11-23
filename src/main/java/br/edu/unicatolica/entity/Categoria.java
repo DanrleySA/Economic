@@ -52,7 +52,7 @@ public class Categoria implements Serializable, EntidadeBase {
         this.usuario = usuario;
     }
 
-//<editor-fold defaultstate="collapsed" desc="equals and hashCode">
+    //<editor-fold defaultstate="collapsed" desc="Equals & HashCode">
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -83,5 +83,5 @@ public class Categoria implements Serializable, EntidadeBase {
         return true;
     }
 //</editor-fold>
-    
+
 }

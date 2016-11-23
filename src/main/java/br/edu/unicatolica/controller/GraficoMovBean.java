@@ -11,8 +11,6 @@ import br.edu.unicatolica.enumeration.TipoMovimentacao;
 import br.edu.unicatolica.security.Seguranca;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
@@ -33,8 +31,6 @@ public class GraficoMovBean implements Serializable {
 
     private LineChartModel model;
     private Integer numeroDeDias = 15;
-    private static DateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM");
-    private DateFormat fr = new SimpleDateFormat("dd/MM");
     private Usuario usuario = new Seguranca().getUsuarioLogado().getUsuario();
 
     public void preRender() {
@@ -69,6 +65,7 @@ public class GraficoMovBean implements Serializable {
         this.model.addSeries(series);
     }
 
+    //<editor-fold defaultstate="collapsed" desc="Getters & Setters">
     public LineChartModel getModel() {
         return model;
     }
@@ -85,14 +82,6 @@ public class GraficoMovBean implements Serializable {
         this.numeroDeDias = numeroDeDias;
     }
 
-    public static DateFormat getDATE_FORMAT() {
-        return DATE_FORMAT;
-    }
-
-    public static void setDATE_FORMAT(DateFormat DATE_FORMAT) {
-        GraficoMovBean.DATE_FORMAT = DATE_FORMAT;
-    }
-
     public Usuario getUsuario() {
         return usuario;
     }
@@ -100,5 +89,6 @@ public class GraficoMovBean implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+//</editor-fold>
 
 }

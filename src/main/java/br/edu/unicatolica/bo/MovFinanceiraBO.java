@@ -10,6 +10,7 @@ import br.edu.unicatolica.entity.MovimentacaoFinanceira;
 import br.edu.unicatolica.entity.Usuario;
 import br.edu.unicatolica.enumeration.TipoMovimentacao;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -42,6 +43,17 @@ public class MovFinanceiraBO implements Serializable {
     public List<MovimentacaoFinanceira> getMovimentacoes(TipoMovimentacao tipo, Date dataInicial, Date dataFinal, Usuario usuario) {
         return MovFinanceiraDAO.getInstance().getMovimentacoes(tipo, dataInicial, dataFinal, usuario);
     }
-    
-    
+
+    public BigDecimal calculaSaldo(List<MovimentacaoFinanceira> movimentacoes) {
+        BigDecimal saldo = new BigDecimal("0.00");
+        for (MovimentacaoFinanceira mov : movimentacoes) {
+            if (mov.getTipo() == TipoMovimentacao.RECEITA) {
+                saldo = saldo.add(mov.getValor());
+            } else {
+                saldo = saldo.subtract(mov.getValor());
+            }
+        }
+        return saldo;
+    }
+
 }
