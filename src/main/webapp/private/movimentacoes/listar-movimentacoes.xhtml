@@ -50,7 +50,8 @@
 
                             <p:dataTable id="tabela-movimentacoes"
                                          value="#{consultaMovFinanceiraBean.movimentacoes}" var="mov"
-                                         emptyMessage="Nenhuma movimentação encontrada." reflow="true">
+                                         emptyMessage="Nenhuma movimentação encontrada." reflow="true"
+                                         paginator="true" rows="5" paginatorPosition="top">
 
                                 <p:column headerText="Descrição">
                                     <p:outputLabel value="#{mov.descricao}" />
@@ -60,9 +61,15 @@
                                     <p:outputLabel value="#{mov.status}"/>
                                 </p:column>
 
-                                <p:column headerText="Valor">
+                                <p:column headerText="Valor" sortBy="#{mov.valor}">
                                     <p:outputLabel value="#{mov.valor}">
                                         <f:convertNumber type="currency" />
+                                    </p:outputLabel>
+                                </p:column>
+
+                                <p:column headerText="Data" sortBy="#{mov.dataVencimento}">
+                                    <p:outputLabel value="#{mov.dataVencimento}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
                                     </p:outputLabel>
                                 </p:column>
 
@@ -70,7 +77,7 @@
                                     <p:outputLabel value="#{mov.categoria.descricao}" />
                                 </p:column>
 
-                                <p:column headerText="Ações" width="100">
+                                <p:column headerText="Ações" width="100" exportable="false">
                                     <center>
                                         <p:commandLink id="editar-mov"
                                                        oncomplete="PF('dlgEdicaoMovimentacao').show()"
@@ -95,6 +102,22 @@
                                     </center>
                                 </p:column>
                             </p:dataTable>
+
+                            <h:commandLink id="export-xls">
+                                <p:graphicImage library="images" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="tabela-movimentacoes" fileName="movimentacoes" />
+                            </h:commandLink>
+                            
+                            <p:spacer height="0" width="10"/>
+                            
+                            <h:commandLink id="export-pdf">
+                                <p:graphicImage library="images" name="pdf.png" width="24"/>
+                                <p:dataExporter type="pdf" target="tabela-movimentacoes" fileName="movimentacoes"/>
+                            </h:commandLink>
+                            
+                            <p:tooltip value="Exportar para xls" for="export-xls" position="bottom" showEffect="clip" hideEffect="clip"/>
+                            <p:tooltip value="Exportar para pdf" for="export-pdf" position="bottom" showEffect="clip" hideEffect="clip"/>
+
                         </h:form>
                     </p:panel>
                 </div>
