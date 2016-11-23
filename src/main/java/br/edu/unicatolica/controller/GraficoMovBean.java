@@ -32,6 +32,8 @@ public class GraficoMovBean implements Serializable {
     private LineChartModel model;
     private Integer numeroDeDias = 15;
     private Usuario usuario = new Seguranca().getUsuarioLogado().getUsuario();
+    private BigDecimal saldoDoMes = new BigDecimal("0.00");
+    private Integer mes;
 
     public void preRender() {
         this.model = new LineChartModel();
@@ -65,6 +67,10 @@ public class GraficoMovBean implements Serializable {
         this.model.addSeries(series);
     }
 
+    public void calculaSaldo() {
+        saldoDoMes = GraficoMovBO.getInstance().saldoDoMes(mes);
+    }
+
     //<editor-fold defaultstate="collapsed" desc="Getters & Setters">
     public LineChartModel getModel() {
         return model;
@@ -88,6 +94,22 @@ public class GraficoMovBean implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public BigDecimal getSaldoDoMes() {
+        return saldoDoMes;
+    }
+
+    public void setSaldoDoMes(BigDecimal saldoDoMes) {
+        this.saldoDoMes = saldoDoMes;
+    }
+
+    public Integer getMes() {
+        return mes;
+    }
+
+    public void setMes(Integer mes) {
+        this.mes = mes;
     }
 //</editor-fold>
 

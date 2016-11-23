@@ -41,7 +41,7 @@ public class MovFinanceiraBO implements Serializable {
     }
 
     public List<MovimentacaoFinanceira> getMovimentacoes(TipoMovimentacao tipo, Date dataInicial, Date dataFinal, Usuario usuario) {
-        return MovFinanceiraDAO.getInstance().getMovimentacoes(tipo, dataInicial, dataFinal, usuario);
+        return MovFinanceiraDAO.getInstance().getMovimentacoesFiltro(tipo, dataInicial, dataFinal, usuario);
     }
 
     public BigDecimal calculaSaldo(List<MovimentacaoFinanceira> movimentacoes) {

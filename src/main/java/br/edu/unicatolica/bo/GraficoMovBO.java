@@ -7,12 +7,15 @@ package br.edu.unicatolica.bo;
 
 import br.edu.unicatolica.dao.MovFinanceiraDAO;
 import br.edu.unicatolica.dao.UsuarioDAO;
+import br.edu.unicatolica.entity.MovimentacaoFinanceira;
 import br.edu.unicatolica.entity.Usuario;
 import br.edu.unicatolica.enumeration.TipoMovimentacao;
+import br.edu.unicatolica.security.Seguranca;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import org.apache.commons.lang3.time.DateUtils;
@@ -62,5 +65,22 @@ public class GraficoMovBO implements Serializable {
         }
 
         return mapaInicial;
+    }
+
+    public BigDecimal saldoDoMes(Integer mes) {
+        BigDecimal saldo = new BigDecimal("0.00");
+        List<MovimentacaoFinanceira> movimentacoes
+                = MovFinanceiraDAO.getInstance().getMovimentacoes(mes, new Seguranca().getUsuarioLogado().getUsuario());
+        for (MovimentacaoFinanceira mov : movimentacoes) {
+            if (mov.getTipo() == TipoMovimentacao.RECEITA) {
+                System.out.println(mov.getDescricao());
+                saldo = saldo.add(mov.getValor());
+            } else {
+                System.out.println(mov.getDescricao());
+                saldo = saldo.subtract(mov.getValor());
+            }
+        }
+
+        return saldo;
     }
 }

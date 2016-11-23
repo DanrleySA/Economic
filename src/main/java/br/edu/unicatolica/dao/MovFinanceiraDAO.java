@@ -9,12 +9,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
@@ -45,7 +45,7 @@ public class MovFinanceiraDAO extends GenericoDAO<MovimentacaoFinanceira> implem
         return instance;
     }
 
-    public List<MovimentacaoFinanceira> getMovimentacoes(TipoMovimentacao tipo, Date dataInicial, Date dataFinal, Usuario usuario) {
+    public List<MovimentacaoFinanceira> getMovimentacoesFiltro(TipoMovimentacao tipo, Date dataInicial, Date dataFinal, Usuario usuario) {
         EntityManager em = JPAUtil.createEntityManager();
         try {
             Session session = em.unwrap(Session.class);
@@ -58,6 +58,30 @@ public class MovFinanceiraDAO extends GenericoDAO<MovimentacaoFinanceira> implem
             if (dataInicial != null && dataFinal != null) {
                 criteria.add(Restrictions.between("dataVencimento", dataInicial, dataFinal));
             }
+
+            return criteria.list();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<MovimentacaoFinanceira> getMovimentacoes(Integer mes, Usuario usuario) {
+        EntityManager em = JPAUtil.createEntityManager();
+        try {
+            Session session = em.unwrap(Session.class);
+            Criteria criteria = session.createCriteria(MovimentacaoFinanceira.class);
+            criteria.add(Restrictions.eq("usuario", usuario));
+
+            GregorianCalendar gc1 = new GregorianCalendar();
+            GregorianCalendar gc2 = new GregorianCalendar();
+            gc1.setTime(new Date());
+            gc1.set(Calendar.MONTH, mes - 1);
+            gc1.set(Calendar.DATE, 1);
+            gc2.setTime(new Date());
+            gc2.set(Calendar.MONTH, mes - 1);
+            gc2.set(Calendar.DATE, 30);
+
+            criteria.add(Restrictions.between("dataVencimento", gc1.getTime(), gc2.getTime()));
 
             return criteria.list();
         } finally {

@@ -29,6 +29,15 @@
                                 <p:chart id="grafico" type="line" model="#{graficoMovBean.model}" responsive="true"
                                          style="height: 300px;"  />
                             </h:panelGrid>
+
+                            <h:panelGrid columns="2">
+                                <p:outputLabel id="saldo" value="Saldo do mês: #{graficoMovBean.saldoDoMes}" styleClass="label-form"/> <br/>
+                                <p:outputLabel value="Digite o nº do mês: "/>
+                                <p:inputText value="#{graficoMovBean.mes}" size="3">
+                                    <p:ajax event="change" update="saldo" listener="#{graficoMovBean.calculaSaldo()}"/>
+                                </p:inputText>
+                            </h:panelGrid>
+
                         </h:form>
                     </p:panel>
                 </div>

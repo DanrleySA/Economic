@@ -6,13 +6,11 @@
 package br.edu.unicatolica.controller;
 
 import br.edu.unicatolica.bo.MovFinanceiraBO;
-import br.edu.unicatolica.dao.UsuarioDAO;
 import br.edu.unicatolica.entity.MovimentacaoFinanceira;
 import br.edu.unicatolica.enumeration.TipoMovimentacao;
 import br.edu.unicatolica.jsf.util.FacesUtil;
 import br.edu.unicatolica.security.Seguranca;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
