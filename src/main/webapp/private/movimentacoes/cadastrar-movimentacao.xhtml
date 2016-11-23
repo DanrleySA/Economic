@@ -54,13 +54,14 @@
                                 <p:outputLabel value="Status: "/>
                                 <p:selectOneRadio value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.status}"
                                                   required="true" requiredMessage="Escolha um status!">
-                                    <f:selectItem itemLabel="Concluída" itemValue="CONCLUIDA"/>
+                                    <f:selectItem itemLabel="Concluída" itemValue="CONCLUIDA" '/>
                                     <f:selectItem itemLabel="Pendente" itemValue="PENDENTE"/>
                                 </p:selectOneRadio>
 
                                 <p:outputLabel value="Data: "/>
                                 <p:calendar value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.dataVencimento}"
-                                            locale="pt" required="true" requiredMessage="O campo 'Data' é obrigatório!"/>
+                                            locale="pt" pattern="dd/MM/yyyy"
+                                            required="true" requiredMessage="O campo 'Data' é obrigatório!"/>
 
                                 <p:outputLabel value="Valor: "/>
                                 <p:inputNumber value="#{cadastroMovFinanceiraBean.movimentacaoFinanceira.valor}" 
