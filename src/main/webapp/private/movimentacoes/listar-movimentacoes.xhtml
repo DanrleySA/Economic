@@ -67,6 +67,10 @@
                                     </p:outputLabel>
                                 </p:column>
 
+                                <p:column headerText="Tipo">
+                                    <p:outputLabel value="#{mov.tipo}"/>
+                                </p:column>
+
                                 <p:column headerText="Data" sortBy="#{mov.dataVencimento}">
                                     <p:outputLabel value="#{mov.dataVencimento}">
                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
@@ -103,18 +107,20 @@
                                 </p:column>
                             </p:dataTable>
 
-                            <h:commandLink id="export-xls">
-                                <p:graphicImage library="images" name="excel.png" width="24"/>
-                                <p:dataExporter type="xls" target="tabela-movimentacoes" fileName="movimentacoes" />
-                            </h:commandLink>
-                            
-                            <p:spacer height="0" width="10"/>
-                            
-                            <h:commandLink id="export-pdf">
-                                <p:graphicImage library="images" name="pdf.png" width="24"/>
-                                <p:dataExporter type="pdf" target="tabela-movimentacoes" fileName="movimentacoes"/>
-                            </h:commandLink>
-                            
+                            <h:panelGrid columns="3">
+                                <h:commandLink id="export-xls">
+                                    <p:graphicImage library="images" name="excel.png" width="24"/>
+                                    <p:dataExporter type="xls" target="tabela-movimentacoes" fileName="movimentacoes" />
+                                </h:commandLink>
+
+                                <p:spacer height="0" width="10"/>
+
+                                <h:commandLink id="export-pdf">
+                                    <p:graphicImage library="images" name="pdf.png" width="24"/>
+                                    <p:dataExporter type="pdf" target="tabela-movimentacoes" fileName="movimentacoes"/>
+                                </h:commandLink>
+                            </h:panelGrid>
+
                             <p:tooltip value="Exportar para xls" for="export-xls" position="bottom" showEffect="clip" hideEffect="clip"/>
                             <p:tooltip value="Exportar para pdf" for="export-pdf" position="bottom" showEffect="clip" hideEffect="clip"/>
 
